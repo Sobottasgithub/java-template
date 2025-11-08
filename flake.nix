@@ -20,6 +20,6 @@
       };
     };
 
-    defaultTemplate = self.templates.empty;
+    templates.default = self.templates.empty;
   };
 }
