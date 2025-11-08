@@ -1,24 +1,26 @@
 {
-  description = "A collection of flake templates";
+  description = "A collection of flke templates";
 
-  outputs = { self }: {
+  inputs.flake-parts.url = "github:numtide/flake-parts";
 
-    templates = {
+  outputs = inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake {
+      templates = {
 
-      empty = {
-        path = ./empty;
-        description = "Empty flake";
+        empty = {
+          path = ./empty;
+          description = "Empty flake";
+        };
+
+        java = {
+          path = ./java;
+          description = "Java template";
+          welcomeText = ''
+            # Getting started
+            - Run `nix run`
+          '';
+        };
       };
-
-      java = {
-        path = ./java;
-        description = "Java template";
-        welcomeText = ''
-          # Getting started
-          - Run `nix run`
-        '';
-      };
-    };
 
     templates.default = self.templates.empty;
   };
